@@ -4,3 +4,6 @@
 *.ptx
 *.cubin
 *.fatbin
+
+.vs/
+x64/
