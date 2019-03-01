@@ -27,6 +27,8 @@
     <ClInclude Include="objloader.h" />
     <ClInclude Include="svd3\svd3_cuda\svd3_cuda.h" />
     <ClInclude Include="tiny_obj_loader.h" />
+    <None Include="model.frag" />
+    <None Include="model.vert" />
     <None Include="Simulation.cuh" />
     <ClInclude Include="matrix.h" />
     <ClInclude Include="Parameters.h" />
@@ -56,8 +58,6 @@
       <TargetMachinePlatform Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">64</TargetMachinePlatform>
       <TargetMachinePlatform Condition="'$(Configuration)|$(Platform)'=='Release|x64'">64</TargetMachinePlatform>
     </CudaCompile>
-    <None Include="snow.frag" />
-    <None Include="snow.vert" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{496426DE-8D48-4306-823B-0FE0000A761A}</ProjectGuid>

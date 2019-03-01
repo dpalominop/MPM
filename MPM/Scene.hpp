@@ -18,7 +18,7 @@ public:
 		sp->young = 4.8e4f;
 		sp->poisson = 0.2f;
 		sp->alpha = 0.95f;
-		sp->density = 100.0f;
+		sp->density = 400.0f;
 
 		sp->lambda = getLambda(sp->poisson, sp->young);
 		sp->mu = getMu(sp->poisson, sp->young);
@@ -45,9 +45,9 @@ private:
 	std::string name;
 };
 
-class BananaSmash : public Scene {
+class ModelSmash : public Scene {
 public:
-	BananaSmash(std::string name) : Scene(name) {}
+	ModelSmash(std::string name) : Scene(name) {}
 
 	virtual void init(std::vector<Particle>& particles, solverParams* sp) {
 		Scene::init(particles, sp);
@@ -61,7 +61,7 @@ public:
 		sp->boxCorner2 = make_float3((dims.x) * sp->radius, (dims.y) * sp->radius, (dims.z) * sp->radius);
 
 		float3 lower = make_float3(dims.x / 2 * sp->radius, 0.5f, dims.z / 2 * sp->radius);
-		createBananaGrid(particles, sp, lower, snowDims, restDistance, getMass(sp->radius, sp->density), make_float3(0, -5, 0));
+		createModelGrid(particles, sp, lower, snowDims, restDistance, getMass(sp->radius, sp->density), make_float3(0, -5, 0));
 
 		sp->numParticles = int(particles.size());
 		sp->gridSize = dims.x * dims.y * dims.z;

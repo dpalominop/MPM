@@ -8,7 +8,7 @@ Renderer::Renderer(int width, int height, solverParams* sp) :
 width(width),
 height(height),
 plane(Shader("plane.vert", "plane.frag")),
-snow(Shader("snow.vert", "snow.frag"))
+snow(Shader("model.vert", "model.frag"))
 {
 	this->sp = sp;
 	aspectRatio = float(width) / float(height);

@@ -26,14 +26,14 @@
     <Filter Include="Physics\Setup">
       <UniqueIdentifier>{f3ac2a48-1113-46e1-888d-35e0a734ea67}</UniqueIdentifier>
     </Filter>
-    <Filter Include="shaders\snow">
-      <UniqueIdentifier>{cc021339-7218-4b09-a282-59dcf6481d6f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="shaders\plane">
       <UniqueIdentifier>{1731312e-46c6-4d6a-9692-8d14510a0613}</UniqueIdentifier>
     </Filter>
     <Filter Include="Physics\CudaMath">
       <UniqueIdentifier>{070d6968-1e40-4595-90b7-68007558bd5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders\model">
+      <UniqueIdentifier>{cc021339-7218-4b09-a282-59dcf6481d6f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -97,12 +97,6 @@
     <ClCompile Include="objloader.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="snow.frag">
-      <Filter>shaders\snow</Filter>
-    </None>
-    <None Include="snow.vert">
-      <Filter>shaders\snow</Filter>
-    </None>
     <None Include="plane.frag">
       <Filter>shaders\plane</Filter>
     </None>
@@ -111,6 +105,12 @@
     </None>
     <None Include="Simulation.cuh">
       <Filter>Physics\ParticleSystem</Filter>
+    </None>
+    <None Include="model.frag">
+      <Filter>shaders\model</Filter>
+    </None>
+    <None Include="model.vert">
+      <Filter>shaders\model</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -9,7 +9,7 @@
 #define TINYOBJLOADER_IMPLEMENTATION
 #include "tiny_obj_loader.h"
 
-inline void createBananaGrid(std::vector<Particle>& particles, solverParams* sp, float3 lower, int3 dims, float radius, float mass, float3 velocity) {
+inline void createModelGrid(std::vector<Particle>& particles, solverParams* sp, float3 lower, int3 dims, float radius, float mass, float3 velocity) {
 	// Read our .obj file
 	std::vector< float3 > vertices;
 	std::vector< float2 > uvs;

@@ -63,7 +63,7 @@ int main() {
 	//Create scenes
 	vector<Particle> particles;
 	
-	BananaSmash scene("BananaSmash");
+	ModelSmash scene("BananaSmash");
 	//GroundSmash scene("GroundSmash");
 	//SnowballDrop scene("SnowballDrop");
 	//WallSmash scene("Wallsmash");
