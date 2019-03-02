@@ -2,13 +2,13 @@
 
 using namespace std;
 
-static const float radius = 0.008f;
+static const float radius = 0.005f;
 
 Renderer::Renderer(int width, int height, solverParams* sp) :
 width(width),
 height(height),
 plane(Shader("plane.vert", "plane.frag")),
-snow(Shader("model.vert", "model.frag"))
+model(Shader("model.vert", "model.frag"))
 {
 	this->sp = sp;
 	aspectRatio = float(width) / float(height);
@@ -29,7 +29,7 @@ snow(Shader("model.vert", "model.frag"))
 
 	GLuint indices[] = {
 		0, 1, 3,
-		1, 2, 3
+		1, 2, 3,
 	};
 
 	//Wall
@@ -61,9 +61,9 @@ snow(Shader("model.vert", "model.frag"))
 }
 
 Renderer::~Renderer() {
-	if (snowBuffers.vao != 0) {
-		glDeleteVertexArrays(1, &snowBuffers.vao);
-		glDeleteBuffers(1, &snowBuffers.positions);
+	if (modelBuffers.vao != 0) {
+		glDeleteVertexArrays(1, &modelBuffers.vao);
+		glDeleteBuffers(1, &modelBuffers.positions);
 	}
 
 	if (wallBuffers.vao != 0) {
@@ -83,17 +83,17 @@ void Renderer::setProjection(glm::mat4 projection) {
 	this->projection = projection;
 }
 
-void Renderer::initSnowBuffers(int numParticles) {
-	glGenVertexArrays(1, &snowBuffers.vao);
+void Renderer::initModelBuffers(int numParticles) {
+	glGenVertexArrays(1, &modelBuffers.vao);
 
-	glGenBuffers(1, &snowBuffers.positions);
-	glBindBuffer(GL_ARRAY_BUFFER, snowBuffers.positions);
+	glGenBuffers(1, &modelBuffers.positions);
+	glBindBuffer(GL_ARRAY_BUFFER, modelBuffers.positions);
 	glBufferData(GL_ARRAY_BUFFER, numParticles * 3 * sizeof(float), 0, GL_DYNAMIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-	cudaGraphicsGLRegisterBuffer(&resource, snowBuffers.positions, cudaGraphicsRegisterFlagsWriteDiscard);
+	cudaGraphicsGLRegisterBuffer(&resource, modelBuffers.positions, cudaGraphicsRegisterFlagsWriteDiscard);
 
-	snowBuffers.numParticles = numParticles;
+	modelBuffers.numParticles = numParticles;
 }
 
 void Renderer::render(Camera& cam) {
@@ -108,8 +108,8 @@ void Renderer::render(Camera& cam) {
 	//renderPlane(wallBuffers);
 	renderPlane(floorBuffers);
 
-	//Snow
-	renderSnow(cam);
+	//Model
+	renderModel(cam);
 }
 
 void Renderer::renderPlane(planeBuffers &buf) {
@@ -127,22 +127,22 @@ void Renderer::renderPlane(planeBuffers &buf) {
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
 
-void Renderer::renderSnow(Camera& cam) {
-	glUseProgram(snow.program);
+void Renderer::renderModel(Camera& cam) {
+	glUseProgram(model.program);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-	snow.setUniformmat4("mView", mView);
-	snow.setUniformmat4("projection", projection);
-	snow.setUniformf("pointRadius", radius);
-	snow.setUniformf("pointScale", width / aspectRatio * (1.0f / tanf(cam.zoom * 0.5f)));
+	model.setUniformmat4("mView", mView);
+	model.setUniformmat4("projection", projection);
+	model.setUniformf("pointRadius", radius);
+	model.setUniformf("pointScale", width / aspectRatio * (1.0f / tanf(cam.zoom * 0.5f)));
 
 	glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
 	glEnable(GL_CULL_FACE);
 
-	//Draw snow
-	glBindVertexArray(snowBuffers.vao);
-	glBindBuffer(GL_ARRAY_BUFFER, snowBuffers.positions);
+	//Draw the model
+	glBindVertexArray(modelBuffers.vao);
+	glBindBuffer(GL_ARRAY_BUFFER, modelBuffers.positions);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(0);
-	glDrawArrays(GL_POINTS, 0, GLsizei(snowBuffers.numParticles));
+	glDrawArrays(GL_POINTS, 0, GLsizei(modelBuffers.numParticles));
 }

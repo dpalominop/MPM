@@ -63,10 +63,7 @@ int main() {
 	//Create scenes
 	vector<Particle> particles;
 	
-	ModelSmash scene("BananaSmash");
-	//GroundSmash scene("GroundSmash");
-	//SnowballDrop scene("SnowballDrop");
-	//WallSmash scene("Wallsmash");
+	ModelSmash scene("ModelSmash");
 	solverParams sp;
 
 	scene.init(particles, &sp);
@@ -78,8 +75,8 @@ int main() {
 
 	ParticleSystem system = ParticleSystem(particles, sp);
 
-	//Initialize buffers for drawing snow
-	renderer.initSnowBuffers(sp.numParticles);
+	//Initialize buffers for drawing the model
+	renderer.initModelBuffers(sp.numParticles);
 
 	//Take 1 step for initialization
 	system.updateWrapper(sp);
@@ -87,7 +84,7 @@ int main() {
 	//Tell ffmpeg to expect raw rgba 720p-60hz frames
 	//-i - tells it to read frames from stdin
 	string cmd = "output\\ffmpeg.exe -r " + std::to_string((1.0f/60.0f) / sp.deltaT) + " -f rawvideo -pix_fmt rgba -s 1280x720 -i - "
-		"-threads 0 -preset fast -y -pix_fmt yuv420p -crf 21 -vf vflip output\\snow.mp4";
+		"-threads 0 -preset fast -y -pix_fmt yuv420p -crf 21 -vf vflip output\\mpm.mp4";
 
 	//open pipe to ffmpeg's stdin in binary write mode
 	FILE* ffmpeg;

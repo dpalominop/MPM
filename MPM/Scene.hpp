@@ -55,13 +55,13 @@ public:
 		const float restDistance = sp->radius * 1.f;
 
 		int3 dims = make_int3(150);
-		int3 snowDims = make_int3(40);
+		int3 modelDims = make_int3(40);
 
 		sp->boxCorner1 = make_float3(0, 0.0f, 0);
 		sp->boxCorner2 = make_float3((dims.x) * sp->radius, (dims.y) * sp->radius, (dims.z) * sp->radius);
 
 		float3 lower = make_float3(dims.x / 2 * sp->radius, 0.5f, dims.z / 2 * sp->radius);
-		createModelGrid(particles, sp, lower, snowDims, restDistance, getMass(sp->radius, sp->density), make_float3(0, -5, 0));
+		createModelGrid(particles, sp, lower, modelDims, restDistance, getMass(sp->radius, sp->density), make_float3(0, -5, 0));
 
 		sp->numParticles = int(particles.size());
 		sp->gridSize = dims.x * dims.y * dims.z;
