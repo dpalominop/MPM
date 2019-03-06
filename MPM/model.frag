@@ -1,4 +1,4 @@
-#version 150 core
+#version 450 core
 
 in vec3 pos;
 

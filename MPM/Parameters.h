@@ -20,6 +20,7 @@ struct solverParams {
 	float mu;
 
 	int numParticles;
+	int numIndices;
 
 	int gridSize;
 	int3 gBounds;

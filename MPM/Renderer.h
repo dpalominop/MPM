@@ -10,7 +10,9 @@
 struct modelBuffers {
 	GLuint vao;
 	GLuint positions;
+	GLuint indices;
 	int numParticles;
+	int numIndices;
 };
 
 struct planeBuffers {
@@ -27,7 +29,7 @@ public:
 	~Renderer();
 
 	void setProjection(glm::mat4 projection);
-	void initModelBuffers(int numParticles);
+	void initModelBuffers(int numParticles, int numIndices, std::vector<unsigned int> indices);
 	void render(Camera& cam);
 
 private:

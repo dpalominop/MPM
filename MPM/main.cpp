@@ -62,11 +62,12 @@ int main() {
 
 	//Create scenes
 	vector<Particle> particles;
+	vector<unsigned int> indices;
 	
-	ModelSmash scene("ModelSmash");
+	ModelSmash scene("Model");
 	solverParams sp;
 
-	scene.init(particles, &sp);
+	scene.init(particles, indices, &sp);
 
 	Camera cam = Camera();
 	cam.eye = glm::vec3(sp.boxCorner2.x, sp.boxCorner2.y, sp.boxCorner2.z);
@@ -76,7 +77,7 @@ int main() {
 	ParticleSystem system = ParticleSystem(particles, sp);
 
 	//Initialize buffers for drawing the model
-	renderer.initModelBuffers(sp.numParticles);
+	renderer.initModelBuffers(sp.numParticles, sp.numIndices, indices);
 
 	//Take 1 step for initialization
 	system.updateWrapper(sp);

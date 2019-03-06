@@ -83,7 +83,7 @@ void Renderer::setProjection(glm::mat4 projection) {
 	this->projection = projection;
 }
 
-void Renderer::initModelBuffers(int numParticles) {
+void Renderer::initModelBuffers(int numParticles, int numIndices, std::vector<unsigned int> indices) {
 	glGenVertexArrays(1, &modelBuffers.vao);
 
 	glGenBuffers(1, &modelBuffers.positions);
@@ -93,7 +93,28 @@ void Renderer::initModelBuffers(int numParticles) {
 
 	cudaGraphicsGLRegisterBuffer(&resource, modelBuffers.positions, cudaGraphicsRegisterFlagsWriteDiscard);
 
+	std::cout << numIndices << std::endl;
+	// create index buffer
+	glGenBuffers(1, &modelBuffers.indices);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, modelBuffers.indices);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, numIndices* sizeof(unsigned int), 0, GL_STATIC_DRAW);
+
+	// fill with indices for rendering mesh as triangle strips
+	GLuint *ebo = (GLuint *)glMapBuffer(GL_ELEMENT_ARRAY_BUFFER, GL_WRITE_ONLY);
+	if (!ebo)
+	{
+		return;
+	}
+
+	for (auto& val : indices) {
+		*ebo++ = val;
+	}
+
+	glUnmapBuffer(GL_ELEMENT_ARRAY_BUFFER);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
 	modelBuffers.numParticles = numParticles;
+	modelBuffers.numIndices = numIndices;
 }
 
 void Renderer::render(Camera& cam) {
@@ -136,13 +157,24 @@ void Renderer::renderModel(Camera& cam) {
 	model.setUniformf("pointRadius", radius);
 	model.setUniformf("pointScale", width / aspectRatio * (1.0f / tanf(cam.zoom * 0.5f)));
 
-	glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
+	//glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
 	glEnable(GL_CULL_FACE);
 
 	//Draw the model
 	glBindVertexArray(modelBuffers.vao);
 	glBindBuffer(GL_ARRAY_BUFFER, modelBuffers.positions);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, modelBuffers.indices);
+
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(0);
-	glDrawArrays(GL_POINTS, 0, GLsizei(modelBuffers.numParticles));
+
+
+	//glDrawArrays(GL_POINTS, 0, GLsizei(modelBuffers.numParticles));
+	
+
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	glDrawElements(GL_TRIANGLES, sp->numIndices, GL_UNSIGNED_INT, 0);
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }

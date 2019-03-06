@@ -49,7 +49,7 @@ class ModelSmash : public Scene {
 public:
 	ModelSmash(std::string name) : Scene(name) {}
 
-	virtual void init(std::vector<Particle>& particles, solverParams* sp) {
+	virtual void init(std::vector<Particle>& particles, std::vector<unsigned int>& indices, solverParams* sp) {
 		Scene::init(particles, sp);
 
 		const float restDistance = sp->radius * 1.f;
@@ -61,9 +61,10 @@ public:
 		sp->boxCorner2 = make_float3((dims.x) * sp->radius, (dims.y) * sp->radius, (dims.z) * sp->radius);
 
 		float3 lower = make_float3(dims.x / 2 * sp->radius, 0.5f, dims.z / 2 * sp->radius);
-		createModelGrid(particles, sp, lower, modelDims, restDistance, getMass(sp->radius, sp->density), make_float3(0, -5, 0));
+		createModelGrid(particles, indices, sp, lower, modelDims, restDistance, getMass(sp->radius, sp->density), make_float3(0, -5, 0));
 
 		sp->numParticles = int(particles.size());
+		sp->numIndices = int(indices.size());
 		sp->gridSize = dims.x * dims.y * dims.z;
 		sp->gBounds = dims;
 	}
