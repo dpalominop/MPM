@@ -93,11 +93,10 @@ void Renderer::initModelBuffers(int numParticles, int numIndices, std::vector<un
 
 	cudaGraphicsGLRegisterBuffer(&resource, modelBuffers.positions, cudaGraphicsRegisterFlagsWriteDiscard);
 
-	std::cout << numIndices << std::endl;
 	// create index buffer
 	glGenBuffers(1, &modelBuffers.indices);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, modelBuffers.indices);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, numIndices* sizeof(unsigned int), 0, GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, numIndices* sizeof(unsigned int), 0, GL_DYNAMIC_DRAW);
 
 	// fill with indices for rendering mesh as triangle strips
 	GLuint *ebo = (GLuint *)glMapBuffer(GL_ELEMENT_ARRAY_BUFFER, GL_WRITE_ONLY);
@@ -173,7 +172,7 @@ void Renderer::renderModel(Camera& cam) {
 	
 
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	glDrawElements(GL_TRIANGLES, sp->numIndices, GL_UNSIGNED_INT, 0);
+	glDrawElements(GL_POINTS, sp->numIndices, GL_UNSIGNED_INT, 0);
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);

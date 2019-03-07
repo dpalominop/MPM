@@ -24,6 +24,7 @@
     <ClInclude Include="Common.h" />
     <ClInclude Include="decomposition.h" />
     <ClInclude Include="helper_math.h" />
+    <ClInclude Include="Model.hpp" />
     <ClInclude Include="objloader.h" />
     <ClInclude Include="svd3\svd3_cuda\svd3_cuda.h" />
     <ClInclude Include="tiny_obj_loader.h" />
@@ -36,7 +37,6 @@
     <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="quaternion.h" />
     <ClInclude Include="Renderer.h" />
-    <ClInclude Include="SetupFunctions.hpp" />
     <ClInclude Include="Shader.h" />
   </ItemGroup>
   <ItemGroup>

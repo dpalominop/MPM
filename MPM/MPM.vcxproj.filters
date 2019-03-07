@@ -59,9 +59,6 @@
     <ClInclude Include="Parameters.h">
       <Filter>Physics\Setup</Filter>
     </ClInclude>
-    <ClInclude Include="SetupFunctions.hpp">
-      <Filter>Physics\Setup</Filter>
-    </ClInclude>
     <ClInclude Include="helper_math.h">
       <Filter>Physics\CudaMath</Filter>
     </ClInclude>
@@ -82,6 +79,9 @@
     </ClInclude>
     <ClInclude Include="objloader.h" />
     <ClInclude Include="tiny_obj_loader.h" />
+    <ClInclude Include="Model.hpp">
+      <Filter>Physics\Setup</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Renderer.cpp">

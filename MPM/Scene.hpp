@@ -3,7 +3,7 @@
 
 #include "Common.h"
 #include "Parameters.h"
-#include "SetupFunctions.hpp"
+#include "Model.hpp"
 #include "Particle.h"
 
 class Scene {
