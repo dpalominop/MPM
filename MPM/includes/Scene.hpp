@@ -10,15 +10,6 @@ class Scene {
 public:
 	Scene(std::string name) : name(name) {}
 	virtual void init(std::vector<Particle>& particles, solverParams* sp) {
-		/*sp->deltaT = 5e-5f;
-		sp->radius = 0.017f;
-		sp->compression = 0.019f;
-		sp->stretch = 0.0075f;
-		sp->hardening = 15.0f;
-		sp->young = 4.8e4f;
-		sp->poisson = 0.2f;
-		sp->alpha = 0.95f;
-		sp->density = 400.0f;*/
 
 		sp->deltaT = 5e-5f;
 		sp->radius = 0.022f;
