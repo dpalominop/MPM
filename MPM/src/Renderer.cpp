@@ -5,8 +5,7 @@
 
 using namespace std;
 
-static const float radius = 0.005f;
-
+static const float radius = 0.027f;
 Renderer::Renderer(int width, int height, solverParams* sp) :
 width(width),
 height(height),
