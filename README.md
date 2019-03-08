@@ -16,8 +16,7 @@ Implementation of the Material Point Method using C++ and Cuda.
  git clone https://github.com/dapalominop/MPM.git
  ``
  
- *  Added the project clonned to solution created before.
- *  Inside the configuration of the project in VisualStudio configure the paths to include and libraries of OpenCV. You could follow this tutorial: [Opencv/VisualStudio2017](http://aprendiendoingenieria.es/instalar-opencv-con-visual-studio-2017/)
+ *  Inside the configuration of the project in VisualStudio configure the paths to include and libraries of Cuda and Opengl.
  *  Finally, build the project with VisualStudio.
  
  ## Results
@@ -33,7 +32,9 @@ Implementation of the Material Point Method using C++ and Cuda.
     <img src="./static/taichi_p2g_number.png" width="300">
   </div>
 </div>
- 
+
+  [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/f4sM-PQ28MU/0.jpg)](https://youtu.be/f4sM-PQ28MU)
+
 ### Own Implementation Results 
 
 <div class="row">
