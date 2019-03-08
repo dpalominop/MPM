@@ -21,6 +21,7 @@ Implementation of the Material Point Method using C++ and Cuda.
  *  Finally, build the project with VisualStudio.
  
  ## Results
+ ### Paper Results
  
  <div class="row">
   <div class="column">
@@ -30,6 +31,15 @@ Implementation of the Material Point Method using C++ and Cuda.
   <div class="column">
     <img src="./static/taichi_p2g_porcent.png" width="300">
     <img src="./static/taichi_p2g_number.png" width="300">
+  </div>
+</div>
+ 
+### Own Implementation Results 
+
+<div class="row">
+  <div class="column">
+    <img src="./static/cuda_mpm_time.png" width="600">
+    
   </div>
 </div>
  
