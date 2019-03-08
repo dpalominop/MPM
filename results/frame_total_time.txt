@@ -1,4 +1,4 @@
-Total Time
+Time
 9.28
 9.25
 9.50

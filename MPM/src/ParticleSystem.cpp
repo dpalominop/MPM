@@ -41,7 +41,14 @@ ParticleSystem::~ParticleSystem() {
 
 void ParticleSystem::updateWrapper(solverParams& params) {
 	setParams(&params);
+
+	//clock_t start, finish;
+	//start = clock();
+
 	update(particles, cells, params.gridSize);
+
+	//finish = clock();
+	//std::cout << (double(finish - start) / CLOCKS_PER_SEC) << std::endl;
 }
 
 void ParticleSystem::getPositionsWrapper(float* positionsPtr) {

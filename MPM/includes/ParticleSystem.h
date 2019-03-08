@@ -5,6 +5,7 @@
 #include "../includes/Particle.h"
 #include "../includes/Cell.h"
 #include "../includes/Parameters.h"
+#include <time.h>
 
 class ParticleSystem {
 public:

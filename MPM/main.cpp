@@ -112,11 +112,11 @@ int main() {
 			ffmpeg = _popen(cmd.c_str(), "wb");
 			startVideo = false;
 		}
-		if (!paused) {
+		/*if (!paused) {
 			if (frameCounter % (int)(1 / (sp.deltaT * 30 * 3)) == 0) {
 				cout << lastFrame << endl;
 			}
-		}
+		}*/
 		if (video == true) {
 			glReadPixels(0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
 			fwrite(buffer, sizeof(int)* width * height, 1, ffmpeg);
