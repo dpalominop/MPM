@@ -1,7 +1,7 @@
 #ifndef SETUP_FUNCTIONS_H
 #define SETUP_FUNCTIONS_H
 
-#include "Common.h"
+#include "../includes/Headers.h"
 #include "Parameters.h"
 #include "Particle.h"
 #include <time.h>

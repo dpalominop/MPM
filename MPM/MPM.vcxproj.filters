@@ -37,88 +37,88 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Camera.hpp">
-      <Filter>Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderer.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Common.h" />
-    <ClInclude Include="Cell.h">
-      <Filter>Physics\Grid</Filter>
-    </ClInclude>
-    <ClInclude Include="Particle.h">
-      <Filter>Physics\ParticleSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleSystem.h">
-      <Filter>Physics\ParticleSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="Shader.h">
-      <Filter>Rendering\Shader</Filter>
-    </ClInclude>
-    <ClInclude Include="Parameters.h">
-      <Filter>Physics\Setup</Filter>
-    </ClInclude>
-    <ClInclude Include="helper_math.h">
-      <Filter>Physics\CudaMath</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.hpp">
-      <Filter>Physics\Setup</Filter>
-    </ClInclude>
-    <ClInclude Include="decomposition.h">
-      <Filter>Physics\CudaMath</Filter>
-    </ClInclude>
-    <ClInclude Include="matrix.h">
-      <Filter>Physics\CudaMath</Filter>
-    </ClInclude>
-    <ClInclude Include="quaternion.h">
-      <Filter>Physics\CudaMath</Filter>
-    </ClInclude>
     <ClInclude Include="svd3\svd3_cuda\svd3_cuda.h">
       <Filter>Physics\CudaMath</Filter>
     </ClInclude>
-    <ClInclude Include="objloader.h" />
-    <ClInclude Include="tiny_obj_loader.h" />
-    <ClInclude Include="Model.hpp">
+    <ClInclude Include="Headers.h" />
+    <ClInclude Include="includes\objloader.h" />
+    <ClInclude Include="includes\tiny_obj_loader.h" />
+    <ClInclude Include="includes\Shader.h">
+      <Filter>Rendering\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Camera.hpp">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Renderer.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Cell.h">
+      <Filter>Physics\Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Particle.h">
+      <Filter>Physics\ParticleSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\ParticleSystem.h">
+      <Filter>Physics\ParticleSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Simulation.cuh">
+      <Filter>Physics\ParticleSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\decomposition.h">
+      <Filter>Physics\CudaMath</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\helper_math.h">
+      <Filter>Physics\CudaMath</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\matrix.h">
+      <Filter>Physics\CudaMath</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\quaternion.h">
+      <Filter>Physics\CudaMath</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Model.hpp">
+      <Filter>Physics\Setup</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Parameters.h">
+      <Filter>Physics\Setup</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Scene.hpp">
       <Filter>Physics\Setup</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Renderer.cpp">
-      <Filter>Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleSystem.cpp">
-      <Filter>Physics\ParticleSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="Shader.cpp">
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\objloader.cpp" />
+    <ClCompile Include="src\Shader.cpp">
       <Filter>Rendering\Shader</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="objloader.cpp" />
+    <ClCompile Include="src\Renderer.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ParticleSystem.cpp">
+      <Filter>Physics\ParticleSystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="plane.frag">
-      <Filter>shaders\plane</Filter>
-    </None>
-    <None Include="plane.vert">
-      <Filter>shaders\plane</Filter>
-    </None>
-    <None Include="Simulation.cuh">
-      <Filter>Physics\ParticleSystem</Filter>
-    </None>
-    <None Include="model.frag">
+    <None Include="shaders\model.frag">
       <Filter>shaders\model</Filter>
     </None>
-    <None Include="model.vert">
+    <None Include="shaders\model.vert">
       <Filter>shaders\model</Filter>
+    </None>
+    <None Include="shaders\plane.frag">
+      <Filter>shaders\plane</Filter>
+    </None>
+    <None Include="shaders\plane.vert">
+      <Filter>shaders\plane</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <CudaCompile Include="Simulation.cu">
-      <Filter>Physics\ParticleSystem</Filter>
-    </CudaCompile>
     <CudaCompile Include="svd3\svd3_cuda\svd3.cu">
       <Filter>Physics\CudaMath</Filter>
+    </CudaCompile>
+    <CudaCompile Include="src\Simulation.cu">
+      <Filter>Physics\ParticleSystem</Filter>
     </CudaCompile>
   </ItemGroup>
 </Project>

@@ -1,10 +1,10 @@
 #ifndef PARTICLE_SYSTEM_H
 #define PARTICLE_SYSTEM_H
 
-#include "Common.h"
-#include "Particle.h"
-#include "Cell.h"
-#include "Parameters.h"
+#include "../includes/Headers.h"
+#include "../includes/Particle.h"
+#include "../includes/Cell.h"
+#include "../includes/Parameters.h"
 
 class ParticleSystem {
 public:

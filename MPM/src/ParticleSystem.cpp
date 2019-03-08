@@ -1,5 +1,5 @@
-#include "ParticleSystem.h"
-#include "Simulation.cuh"
+#include "../includes/ParticleSystem.h"
+#include "../includes/Simulation.cuh"
 
 using namespace std;
 

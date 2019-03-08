@@ -1,11 +1,11 @@
 #define GLEW_DYNAMIC
 #include <GL/glew.h>
-#include "Common.h"
+#include "includes/Headers.h"
 #include <GLFW/glfw3.h>
-#include "Camera.hpp"
-#include "ParticleSystem.h"
-#include "Renderer.h"
-#include "Scene.hpp"
+#include "includes/Camera.hpp"
+#include "includes/ParticleSystem.h"
+#include "includes/Renderer.h"
+#include "includes/Scene.hpp"
 #include <cuda_profiler_api.h>
 
 #define _CRTDBG_MAP_ALLOC

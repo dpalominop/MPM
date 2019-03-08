@@ -1,7 +1,7 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include "Common.h"
+#include "../includes/Headers.h"
 #include <GL/glew.h>
 
 enum Movement {

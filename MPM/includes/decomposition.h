@@ -17,7 +17,7 @@
 #include "matrix.h"
 #include "helper_math.h"
 
-#include "svd3/svd3_cuda/svd3_cuda.h"
+#include "../svd3/svd3_cuda/svd3_cuda.h"
 
 __host__ __device__ __forceinline__ void computeSVD(const mat3 &A, mat3 &W, mat3 &S, mat3 &V) {
 

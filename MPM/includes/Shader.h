@@ -1,7 +1,7 @@
 #ifndef SHADER_H
 #define SHADER_H
 
-#include "Common.h"
+#include "../includes/Headers.h"
 #include <string>
 #include <sstream>
 #include <fstream>

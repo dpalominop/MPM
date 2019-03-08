@@ -1,7 +1,7 @@
 #ifndef SCENE_H
 #define SCENE_H
 
-#include "Common.h"
+#include "../includes/Headers.h"
 #include "Parameters.h"
 #include "Model.hpp"
 #include "Particle.h"

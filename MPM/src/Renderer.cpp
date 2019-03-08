@@ -1,4 +1,4 @@
-#include "Renderer.h"
+#include "../includes/Renderer.h"
 
 using namespace std;
 
@@ -7,8 +7,8 @@ static const float radius = 0.005f;
 Renderer::Renderer(int width, int height, solverParams* sp) :
 width(width),
 height(height),
-plane(Shader("plane.vert", "plane.frag")),
-model(Shader("model.vert", "model.frag"))
+plane(Shader("shaders/plane.vert", "shaders/plane.frag")),
+model(Shader("shaders/model.vert", "shaders/model.frag"))
 {
 	this->sp = sp;
 	aspectRatio = float(width) / float(height);

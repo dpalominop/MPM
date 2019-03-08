@@ -1,7 +1,7 @@
 #ifndef PARAMETERS_H
 #define PARAMETERS_H
 
-#include "Common.h"
+#include "../includes/Headers.h"
 
 struct solverParams {
 	float deltaT;

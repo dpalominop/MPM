@@ -1,12 +1,12 @@
 #ifndef SIMULATION_CU
 #define SIMULATION_CU
 
-#include "Common.h"
-#include "Parameters.h"
-#include "Particle.h"
-#include "Cell.h"
-#include "matrix.h"
-#include "decomposition.h"
+#include "../includes/Headers.h"
+#include "../includes/Parameters.h"
+#include "../includes/Particle.h"
+#include "../includes/Cell.h"
+#include "../includes/matrix.h"
+#include "../includes/decomposition.h"
 
 #define cudaCheck(x) { cudaError_t err = x; if (err != cudaSuccess) { printf("Cuda error: %f in %s at %s:%f\n", err, #x, __FILE__, __LINE__); assert(0); } }
 

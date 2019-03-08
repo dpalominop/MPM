@@ -19,45 +19,39 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Camera.hpp" />
-    <ClInclude Include="Cell.h" />
-    <ClInclude Include="Common.h" />
-    <ClInclude Include="decomposition.h" />
-    <ClInclude Include="helper_math.h" />
-    <ClInclude Include="Model.hpp" />
-    <ClInclude Include="objloader.h" />
+    <ClInclude Include="Headers.h" />
+    <ClInclude Include="includes\Camera.hpp" />
+    <ClInclude Include="includes\Cell.h" />
+    <ClInclude Include="includes\decomposition.h" />
+    <ClInclude Include="includes\helper_math.h" />
+    <ClInclude Include="includes\matrix.h" />
+    <ClInclude Include="includes\Model.hpp" />
+    <ClInclude Include="includes\objloader.h" />
+    <ClInclude Include="includes\Parameters.h" />
+    <ClInclude Include="includes\Particle.h" />
+    <ClInclude Include="includes\ParticleSystem.h" />
+    <ClInclude Include="includes\quaternion.h" />
+    <ClInclude Include="includes\Renderer.h" />
+    <ClInclude Include="includes\Scene.hpp" />
+    <ClInclude Include="includes\Shader.h" />
+    <ClInclude Include="includes\Simulation.cuh" />
+    <ClInclude Include="includes\tiny_obj_loader.h" />
     <ClInclude Include="svd3\svd3_cuda\svd3_cuda.h" />
-    <ClInclude Include="tiny_obj_loader.h" />
-    <None Include="model.frag" />
-    <None Include="model.vert" />
-    <None Include="Simulation.cuh" />
-    <ClInclude Include="matrix.h" />
-    <ClInclude Include="Parameters.h" />
-    <ClInclude Include="Particle.h" />
-    <ClInclude Include="ParticleSystem.h" />
-    <ClInclude Include="quaternion.h" />
-    <ClInclude Include="Renderer.h" />
-    <ClInclude Include="Shader.h" />
+    <None Include="shaders\model.frag" />
+    <None Include="shaders\model.vert" />
+    <None Include="shaders\plane.frag" />
+    <None Include="shaders\plane.vert" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="objloader.cpp" />
-    <ClCompile Include="ParticleSystem.cpp" />
-    <ClCompile Include="Renderer.cpp" />
-    <ClInclude Include="Scene.hpp" />
-    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="src\objloader.cpp" />
+    <ClCompile Include="src\ParticleSystem.cpp" />
+    <ClCompile Include="src\Renderer.cpp" />
+    <ClCompile Include="src\Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <CudaCompile Include="src\Simulation.cu" />
     <CudaCompile Include="svd3\svd3_cuda\svd3.cu" />
-    <None Include="plane.frag" />
-    <None Include="plane.vert" />
-    <CudaCompile Include="Simulation.cu">
-      <FileType>Document</FileType>
-      <TargetMachinePlatform Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">64</TargetMachinePlatform>
-      <TargetMachinePlatform Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">64</TargetMachinePlatform>
-      <TargetMachinePlatform Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">64</TargetMachinePlatform>
-      <TargetMachinePlatform Condition="'$(Configuration)|$(Platform)'=='Release|x64'">64</TargetMachinePlatform>
-    </CudaCompile>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{496426DE-8D48-4306-823B-0FE0000A761A}</ProjectGuid>

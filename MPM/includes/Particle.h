@@ -1,7 +1,7 @@
 #ifndef PARTICLE_H
 #define PARTICLE_H
 
-#include "Common.h"
+#include "../includes/Headers.h"
 #include "matrix.h"
 
 struct Particle {

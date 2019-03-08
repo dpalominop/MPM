@@ -1,9 +1,9 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
-#include "Common.h"
-#include "Camera.hpp"
-#include "Shader.h"
+#include "../includes/Headers.h"
+#include "../includes/Camera.hpp"
+#include "../includes/Shader.h"
 #include <cuda_gl_interop.h>
 #include "Parameters.h"
 

@@ -1,7 +1,7 @@
 #ifndef CELL_H
 #define CELL_H
 
-#include "Common.h"
+#include "../includes/Headers.h"
 
 struct Cell {
 	float mass;
