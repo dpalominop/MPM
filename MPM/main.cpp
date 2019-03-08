@@ -64,7 +64,7 @@ int main() {
 	vector<Particle> particles;
 	vector<unsigned int> indices;
 	
-	ModelSmash scene("Model");
+	Model scene("Model");
 	solverParams sp;
 
 	scene.init(particles, indices, &sp);

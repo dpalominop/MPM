@@ -55,9 +55,9 @@ private:
 	std::string name;
 };
 
-class ModelSmash : public Scene {
+class Model : public Scene {
 public:
-	ModelSmash(std::string name) : Scene(name) {}
+	Model(std::string name) : Scene(name) {}
 
 	virtual void init(std::vector<Particle>& particles, std::vector<unsigned int>& indices, solverParams* sp) {
 		Scene::init(particles, sp);
@@ -77,76 +77,6 @@ public:
 		sp->numIndices = int(indices.size());
 		sp->gridSize = dims.x * dims.y * dims.z;
 		sp->gBounds = dims;
-	}
-};
-
-class GroundSmash : public Scene {
-public:
-	GroundSmash(std::string name) : Scene(name) {}
-
-	virtual void init(std::vector<Particle>& particles, solverParams* sp) {
-		Scene::init(particles, sp);
-
-		const float restDistance = sp->radius * 1.f;
-		
-		int3 dims = make_int3(150);
-		int3 snowDims = make_int3(40);
-
-		sp->boxCorner1 = make_float3(0, 0.0f, 0);
-		sp->boxCorner2 = make_float3((dims.x) * sp->radius, (dims.y) * sp->radius, (dims.z) * sp->radius);
-
-		float3 lower = make_float3(dims.x / 2 * sp->radius, 0.5f, dims.z / 2 * sp->radius);
-		createParticleGrid(particles, sp, lower, snowDims, restDistance, getMass(sp->radius, sp->density), make_float3(0, -5, 0));
-
-		sp->numParticles = int(particles.size());
-		sp->gridSize = dims.x * dims.y * dims.z;
-		sp->gBounds = dims;
-	}
-};
-
-class SnowballDrop : public Scene {
-public:
-	SnowballDrop(std::string name) : Scene(name) {}
-
-	virtual void init(std::vector<Particle>& particles, solverParams* sp) {
-		Scene::init(particles, sp);
-		const float restDistance = sp->radius * 1.0f;
-
-		int3 dims = make_int3(150);
-
-		sp->boxCorner1 = make_float3(0, 0.0f, 0);
-		sp->boxCorner2 = make_float3((dims.x) * sp->radius, (dims.y) * sp->radius, (dims.z) * sp->radius);
-
-		int3 snowDims = make_int3(30);
-		createSnowball(particles, make_float3(1.25f, 1.0f, 1.25f), snowDims, restDistance, getMass(sp->radius, sp->density), make_float3(0, -10, 0));
-
-		sp->numParticles = int(particles.size());
-		sp->gBounds = dims;
-		sp->gridSize = dims.x * dims.y * dims.z;
-	}
-};
-
-
-class WallSmash : public Scene {
-public:
-	WallSmash(std::string name) : Scene(name) {}
-
-	virtual void init(std::vector<Particle>& particles, solverParams* sp) {
-		Scene::init(particles, sp);
-		const float restDistance = sp->radius * 1.0f;
-
-		int3 dims = make_int3(150);
-
-		sp->boxCorner1 = make_float3(0.0f, 0.0f, 0);
-		sp->boxCorner2 = make_float3((dims.x) * sp->radius, (dims.y) * sp->radius, (dims.z) * sp->radius);
-
-		int3 snowDims = make_int3(40);
-		createSnowball(particles, make_float3(1.0f, 1.0f, 1.25f), snowDims, restDistance, getMass(sp->radius, sp->density), make_float3(-10.0f, 0.0f, 0));
-
-		sp->numParticles = int(particles.size());
-		sp->gBounds = dims;
-		sp->gridSize = dims.x * dims.y * dims.z;
-		sp->stickyWalls = true;
 	}
 };
 
