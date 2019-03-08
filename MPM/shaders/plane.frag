@@ -1,10 +1,13 @@
 #version 450 core
-in vec3 coord;
+out vec4 FragColor;
+  
+in vec3 ourColor;
+in vec2 TexCoord;
 
-out vec3 color;
+uniform sampler2D texture1;
 
-void main() {
-	vec3 col1 = vec3(0.8);
-	vec3 col2 = vec3(0.9);
-    color = mix(col1, col2, 0.5 * mod(floor(coord.x) + floor(coord.y) + floor(coord.z), 2));
+void main()
+{
+    //FragColor = mix(texture(texture1, TexCoord), texture(texture2, TexCoord), 0.2);
+	FragColor = texture(texture1, TexCoord);
 }

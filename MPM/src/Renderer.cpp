@@ -1,5 +1,8 @@
 #include "../includes/Renderer.h"
 
+#define STB_IMAGE_IMPLEMENTATION
+#include "../includes/stb_image.h"
+
 using namespace std;
 
 static const float radius = 0.005f;
@@ -32,25 +35,20 @@ model(Shader("shaders/model.vert", "shaders/model.frag"))
 		1, 2, 3,
 	};
 
-	//Wall
-	glGenVertexArrays(1, &wallBuffers.vao);
+	GLfloat vertices[] = {
+		// positions          // colors           // texture coords (note that we changed them to 'zoom in' on our texture image)
+		 sp->boxCorner2.x, sp->boxCorner1.y, sp->boxCorner2.z,   1.0f, 0.0f, 0.0f,   0.95f, 0.95f, // top right
+		 sp->boxCorner2.x, sp->boxCorner1.y, sp->boxCorner1.z,   0.0f, 1.0f, 0.0f,   0.95f, 0.10f, // bottom right
+		sp->boxCorner1.x, sp->boxCorner1.y, sp->boxCorner1.z,   0.0f, 0.0f, 1.0f,   0.10f, 0.10f, // bottom left
+		sp->boxCorner1.x, sp->boxCorner1.y, sp->boxCorner2.z,   1.0f, 1.0f, 0.0f,   0.10f, 0.95f  // top left 
+	};
 
-	glGenBuffers(1, &wallBuffers.vbo);
-	glBindBuffer(GL_ARRAY_BUFFER, wallBuffers.vbo);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(wallVertices), wallVertices, GL_STATIC_DRAW);
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-	glGenBuffers(1, &wallBuffers.ebo);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, wallBuffers.ebo);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-
-	//Floor
+	//Grass
 	glGenVertexArrays(1, &floorBuffers.vao);
 
 	glGenBuffers(1, &floorBuffers.vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, floorBuffers.vbo);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(floorVertices), floorVertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	glGenBuffers(1, &floorBuffers.ebo);
@@ -58,18 +56,53 @@ model(Shader("shaders/model.vert", "shaders/model.frag"))
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
+	// position attribute
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(0);
+	// color attribute
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+	glEnableVertexAttribArray(1);
+	// texture coord attribute
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+	glEnableVertexAttribArray(2);
+
+	// load and create a texture 
+	// -------------------------
+	unsigned int texture1;
+	// texture 1
+	// ---------
+	glGenTextures(1, &texture1);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, texture1);
+	// set the texture wrapping parameters
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);	// set texture wrapping to GL_REPEAT (default wrapping method)
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	// set texture filtering parameters
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	// load image, create texture and generate mipmaps
+	int widthi, heighti, nrChannels;
+	stbi_set_flip_vertically_on_load(true); // tell stb_image.h to flip loaded texture's on the y-axis.
+	// The FileSystem::getPath(...) is part of the GitHub repository so we can find files on any IDE/platform; replace it with your own image path.
+	unsigned char *data = stbi_load("models/grass.png", &widthi, &heighti, &nrChannels, 0);
+	if (data)
+	{
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, widthi, heighti, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+	{
+		std::cout << "Failed to load texture" << std::endl;
+	}
+	stbi_image_free(data);
+
+
 }
 
 Renderer::~Renderer() {
 	if (modelBuffers.vao != 0) {
 		glDeleteVertexArrays(1, &modelBuffers.vao);
 		glDeleteBuffers(1, &modelBuffers.positions);
-	}
-
-	if (wallBuffers.vao != 0) {
-		glDeleteVertexArrays(1, &wallBuffers.vao);
-		glDeleteBuffers(1, &wallBuffers.vbo);
-		glDeleteBuffers(1, &wallBuffers.ebo);
 	}
 
 	if (floorBuffers.vao != 0) {
@@ -142,8 +175,21 @@ void Renderer::renderPlane(planeBuffers &buf) {
 	glBindVertexArray(buf.vao);
 	glBindBuffer(GL_ARRAY_BUFFER, buf.vbo);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buf.ebo);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+	/*glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(0);
+	*/
+	// position attribute
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(0);
+	// color attribute
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+	glEnableVertexAttribArray(1);
+	// texture coord attribute
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+	glEnableVertexAttribArray(2);
+
+	glUniform1i(glGetUniformLocation(plane.program, "texture1"), 0);
+
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
 
@@ -167,13 +213,7 @@ void Renderer::renderModel(Camera& cam) {
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(0);
 
-
-	//glDrawArrays(GL_POINTS, 0, GLsizei(modelBuffers.numParticles));
-	
-
-	//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	glDrawElements(GL_POINTS, sp->numIndices, GL_UNSIGNED_INT, 0);
-	//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
