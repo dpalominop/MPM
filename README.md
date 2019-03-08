@@ -22,6 +22,17 @@ Implementation of the Material Point Method using C++ and Cuda.
  
  ## Results
  
+ <div class="row">
+  <div class="column">
+    <img src="./static/taichi_total_time.png" width="600">
+    
+  </div>
+  <div class="column">
+    <img src="./static/taichi_p2g_porcent.png" width="300">
+    <img src="./static/taichi_p2g_number.png" width="300">
+  </div>
+</div>
+ 
  [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/4m0TCEUNk9Q/0.jpg)](https://youtu.be/4m0TCEUNk9Q)
  
 ## Contact
