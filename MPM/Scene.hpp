@@ -10,7 +10,7 @@ class Scene {
 public:
 	Scene(std::string name) : name(name) {}
 	virtual void init(std::vector<Particle>& particles, solverParams* sp) {
-		sp->deltaT = 5e-5f;
+		/*sp->deltaT = 5e-5f;
 		sp->radius = 0.017f;
 		sp->compression = 0.019f;
 		sp->stretch = 0.0075f;
@@ -18,7 +18,17 @@ public:
 		sp->young = 4.8e4f;
 		sp->poisson = 0.2f;
 		sp->alpha = 0.95f;
-		sp->density = 400.0f;
+		sp->density = 400.0f;*/
+
+		sp->deltaT = 5e-5f;
+		sp->radius = 0.022f;
+		sp->compression = 0.019f;
+		sp->stretch = 0.0075f;
+		sp->hardening = 100.0f;
+		sp->young = 1500.0f;
+		sp->poisson = 0.4f;
+		sp->alpha = 0.95f;
+		sp->density = 30.0f;
 
 		sp->lambda = getLambda(sp->poisson, sp->young);
 		sp->mu = getMu(sp->poisson, sp->young);

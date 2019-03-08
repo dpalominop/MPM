@@ -156,7 +156,7 @@ void Renderer::renderModel(Camera& cam) {
 	model.setUniformf("pointRadius", radius);
 	model.setUniformf("pointScale", width / aspectRatio * (1.0f / tanf(cam.zoom * 0.5f)));
 
-	//glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
+	glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
 	glEnable(GL_CULL_FACE);
 
 	//Draw the model

@@ -115,7 +115,6 @@ int main() {
 		if (!paused) {
 			if (frameCounter % (int)(1 / (sp.deltaT * 30 * 3)) == 0) {
 				cout << lastFrame << endl;
-				
 			}
 		}
 		if (video == true) {
